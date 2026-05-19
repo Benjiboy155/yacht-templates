@@ -1,4 +1,5 @@
-{
+[
+  {
     "type": 1,
     "title": "Nextcloud (Optimiert)",
     "name": "nextcloud",
@@ -37,4 +38,51 @@
         "default": "Europe/Berlin"
       }
     ]
+  },
+  {
+    "type": 1,
+    "title": "MariaDB",
+    "name": "mariadb",
+    "description": "Eine schnelle, robuste und relationale SQL-Datenbank. Ideal als leistungsstarkes Backend für Nextcloud.",
+    "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/mariadb.png",
+    "image": "mariadb:latest",
+    "categories": [
+      "Database"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      {
+        "3306": "3306/tcp"
+      }
+    ],
+    "volumes": [
+      {
+        "container": "/var/lib/mysql",
+        "bind": "!config/mariadb"
+      }
+    ],
+    "env": [
+      {
+        "name": "MYSQL_ROOT_PASSWORD",
+        "label": "Root Passwort",
+        "default": "root_passwort_hier_aendern"
+      },
+      {
+        "name": "MYSQL_DATABASE",
+        "label": "Datenbank Name",
+        "default": "nextcloud"
+      },
+      {
+        "name": "MYSQL_USER",
+        "label": "Datenbank Benutzer",
+        "default": "nextcloud_user"
+      },
+      {
+        "name": "MYSQL_PASSWORD",
+        "label": "Benutzer Passwort",
+        "default": "user_passwort_hier_aendern"
+      }
+    ]
   }
+]
