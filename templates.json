@@ -1,34 +1,40 @@
-[
-  {
-      "type": 1,
-      "title": "Nextcloud",
-      "name": "nextcloud",
-      "description": "Nextcloud ist eine sichere und quelloffene Cloud-Plattform. Speichere deine Dokumente, Kalender, Kontakte und Fotos auf deinem eigenen Server und teile sie sicher mit anderen.",
-      "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nextcloud.png",
-      "image": "nextcloud:latest",
-      "categories": [
-        "Cloud",
-        "Tools"
-      ],
-      "platform": "linux",
-      "restart_policy": "unless-stopped",
-      "ports": [
-        {
-          "WebUI": "8080:80/tcp"
-        }
-      ],
-      "volumes": [
-        {
-          "container": "/var/www/html",
-          "bind": "!config/Nextcloud"
-        }
-      ],
-      "env": [
-        {
-          "name": "TZ",
-          "label": "TZ",
-          "default": "Europe/Berlin"
-        }
-      ]
-    }
-  ]
+{
+    "type": 1,
+    "title": "Nextcloud (Optimiert)",
+    "name": "nextcloud",
+    "description": "Nextcloud mit sauber getrennten Pfaden für Konfiguration, Apps und deine privaten Daten.",
+    "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nextcloud.png",
+    "image": "nextcloud:latest",
+    "categories": [
+      "Cloud",
+      "Tools"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      {
+        "WebUI": "8080:80/tcp"
+      }
+    ],
+    "volumes": [
+      {
+        "container": "/var/www/html/config",
+        "bind": "!config/Nextcloud/config"
+      },
+      {
+        "container": "/var/www/html/data",
+        "bind": "!config/Nextcloud/data"
+      },
+      {
+        "container": "/var/www/html/custom_apps",
+        "bind": "!config/Nextcloud/apps"
+      }
+    ],
+    "env": [
+      {
+        "name": "TZ",
+        "label": "TZ",
+        "default": "Europe/Berlin"
+      }
+    ]
+  }
