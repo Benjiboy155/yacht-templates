@@ -1,0 +1,29 @@
+{
+  "version": "2",
+  "templates": [
+    {
+      "type": 1,
+      "title": "Nextcloud",
+      "description": "Deine private Cloud für Dateien, Fotos und Dokumente.",
+      "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nextcloud.png",
+      "image": "nextcloud:latest",
+      "restart_policy": "unless-stopped",
+      "ports": [
+        "8080:80"
+      ],
+      "volumes": [
+        {
+          "container": "/var/www/html",
+          "bind": "nextcloud_data"
+        }
+      ],
+      "env": [
+        {
+          "name": "TZ",
+          "label": "Zeitzone",
+          "default": "Europe/Zurich"
+        }
+      ]
+    }
+  ]
+}
